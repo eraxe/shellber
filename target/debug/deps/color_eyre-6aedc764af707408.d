@@ -1,0 +1,12 @@
+/home/katana/projects/rust/shellbe/target/debug/deps/libcolor_eyre-6aedc764af707408.rmeta: /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/color-eyre-0.6.4/src/lib.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/color-eyre-0.6.4/src/config.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/color-eyre-0.6.4/src/fmt.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/color-eyre-0.6.4/src/handler.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/color-eyre-0.6.4/src/private.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/color-eyre-0.6.4/src/section/mod.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/color-eyre-0.6.4/src/section/help.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/color-eyre-0.6.4/src/writers.rs
+
+/home/katana/projects/rust/shellbe/target/debug/deps/color_eyre-6aedc764af707408.d: /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/color-eyre-0.6.4/src/lib.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/color-eyre-0.6.4/src/config.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/color-eyre-0.6.4/src/fmt.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/color-eyre-0.6.4/src/handler.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/color-eyre-0.6.4/src/private.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/color-eyre-0.6.4/src/section/mod.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/color-eyre-0.6.4/src/section/help.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/color-eyre-0.6.4/src/writers.rs
+
+/home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/color-eyre-0.6.4/src/lib.rs:
+/home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/color-eyre-0.6.4/src/config.rs:
+/home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/color-eyre-0.6.4/src/fmt.rs:
+/home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/color-eyre-0.6.4/src/handler.rs:
+/home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/color-eyre-0.6.4/src/private.rs:
+/home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/color-eyre-0.6.4/src/section/mod.rs:
+/home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/color-eyre-0.6.4/src/section/help.rs:
+/home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/color-eyre-0.6.4/src/writers.rs:

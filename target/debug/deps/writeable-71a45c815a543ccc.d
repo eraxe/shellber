@@ -1,0 +1,12 @@
+/home/katana/projects/rust/shellbe/target/debug/deps/libwriteable-71a45c815a543ccc.rmeta: /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/writeable-0.6.1/src/lib.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/writeable-0.6.1/src/cmp.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/writeable-0.6.1/src/impls.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/writeable-0.6.1/src/ops.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/writeable-0.6.1/src/parts_write_adapter.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/writeable-0.6.1/src/testing.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/writeable-0.6.1/src/to_string_or_borrow.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/writeable-0.6.1/src/try_writeable.rs
+
+/home/katana/projects/rust/shellbe/target/debug/deps/writeable-71a45c815a543ccc.d: /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/writeable-0.6.1/src/lib.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/writeable-0.6.1/src/cmp.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/writeable-0.6.1/src/impls.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/writeable-0.6.1/src/ops.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/writeable-0.6.1/src/parts_write_adapter.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/writeable-0.6.1/src/testing.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/writeable-0.6.1/src/to_string_or_borrow.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/writeable-0.6.1/src/try_writeable.rs
+
+/home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/writeable-0.6.1/src/lib.rs:
+/home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/writeable-0.6.1/src/cmp.rs:
+/home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/writeable-0.6.1/src/impls.rs:
+/home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/writeable-0.6.1/src/ops.rs:
+/home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/writeable-0.6.1/src/parts_write_adapter.rs:
+/home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/writeable-0.6.1/src/testing.rs:
+/home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/writeable-0.6.1/src/to_string_or_borrow.rs:
+/home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/writeable-0.6.1/src/try_writeable.rs:

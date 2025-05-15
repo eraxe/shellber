@@ -1,0 +1,77 @@
+[package]
+name = "shellbe"
+version = "2.0.0"
+edition = "2021"
+authors = ["Arash"]
+description = "A comprehensive SSH management tool with plugin support"
+readme = "README.md"
+repository = "https://github.com/arash/shellbe"
+license = "MIT"
+
+[dependencies]
+# Command line parsing
+clap = { version = "4.4", features = ["derive"] }
+
+# SSH implementation
+thrussh = "0.35"
+thrussh-keys = "0.22"
+
+# Configuration and serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+toml = "0.8"
+config = "0.13"
+
+# Plugin system
+libloading = "0.8"
+inventory = "0.3"
+
+# HTTP requests for plugin management
+reqwest = { version = "0.11", features = ["json", "blocking"] }
+
+# Terminal UI
+ratatui = "0.25"
+crossterm = "0.27"
+
+# Logging and error handling
+tracing = "0.1"
+tracing-subscriber = "0.3"
+color-eyre = "0.6"
+
+# Path and environment management
+dirs = "5.0"
+shellexpand = "3.1"
+
+# Async runtime
+tokio = { version = "1.34", features = ["full"] }
+
+# Additional utilities
+chrono = { version = "0.4", features = ["serde"] }
+once_cell = "1.18"
+async-trait = "0.1"
+futures = "0.3"
+uuid = { version = "1.5", features = ["v4", "serde"] }
+thiserror = "2.0.12"
+tempfile = "3.20.0"
+zip = "3.0.0"
+regex = "1.11.1"
+
+[lib]
+name = "shellbe"
+path = "src/lib.rs"
+
+[[bin]]
+name = "shellbe"
+path = "src/main.rs"
+
+[profile.release]
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
+
+[workspace]
+members = [
+    ".",
+    "plugin_sdk",
+]

@@ -1,0 +1,13 @@
+/home/katana/projects/rust/shellbe/target/debug/deps/libyoke-145825353f7c1bea.rmeta: /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.0/src/lib.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.0/src/cartable_ptr.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.0/src/either.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.0/src/erased.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.0/src/kinda_sorta_dangling.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.0/src/macro_impls.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.0/src/yoke.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.0/src/yokeable.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.0/src/zero_from.rs
+
+/home/katana/projects/rust/shellbe/target/debug/deps/yoke-145825353f7c1bea.d: /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.0/src/lib.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.0/src/cartable_ptr.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.0/src/either.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.0/src/erased.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.0/src/kinda_sorta_dangling.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.0/src/macro_impls.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.0/src/yoke.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.0/src/yokeable.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.0/src/zero_from.rs
+
+/home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.0/src/lib.rs:
+/home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.0/src/cartable_ptr.rs:
+/home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.0/src/either.rs:
+/home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.0/src/erased.rs:
+/home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.0/src/kinda_sorta_dangling.rs:
+/home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.0/src/macro_impls.rs:
+/home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.0/src/yoke.rs:
+/home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.0/src/yokeable.rs:
+/home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.0/src/zero_from.rs:

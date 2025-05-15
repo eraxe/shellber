@@ -1,0 +1,12 @@
+/home/katana/projects/rust/shellbe/target/debug/deps/libasync_trait-ad925796664b857e.so: /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.88/src/lib.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.88/src/args.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.88/src/bound.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.88/src/expand.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.88/src/lifetime.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.88/src/parse.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.88/src/receiver.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.88/src/verbatim.rs
+
+/home/katana/projects/rust/shellbe/target/debug/deps/async_trait-ad925796664b857e.d: /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.88/src/lib.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.88/src/args.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.88/src/bound.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.88/src/expand.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.88/src/lifetime.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.88/src/parse.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.88/src/receiver.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.88/src/verbatim.rs
+
+/home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.88/src/lib.rs:
+/home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.88/src/args.rs:
+/home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.88/src/bound.rs:
+/home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.88/src/expand.rs:
+/home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.88/src/lifetime.rs:
+/home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.88/src/parse.rs:
+/home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.88/src/receiver.rs:
+/home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.88/src/verbatim.rs:

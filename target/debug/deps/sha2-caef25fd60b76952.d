@@ -1,0 +1,12 @@
+/home/katana/projects/rust/shellbe/target/debug/deps/libsha2-caef25fd60b76952.rmeta: /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.9.9/src/lib.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.9.9/src/consts.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.9.9/src/sha256.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.9.9/src/sha512.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.9.9/src/sha256/soft.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.9.9/src/sha256/x86.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.9.9/src/sha512/soft.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.9.9/src/sha512/x86.rs
+
+/home/katana/projects/rust/shellbe/target/debug/deps/sha2-caef25fd60b76952.d: /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.9.9/src/lib.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.9.9/src/consts.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.9.9/src/sha256.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.9.9/src/sha512.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.9.9/src/sha256/soft.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.9.9/src/sha256/x86.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.9.9/src/sha512/soft.rs /home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.9.9/src/sha512/x86.rs
+
+/home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.9.9/src/lib.rs:
+/home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.9.9/src/consts.rs:
+/home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.9.9/src/sha256.rs:
+/home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.9.9/src/sha512.rs:
+/home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.9.9/src/sha256/soft.rs:
+/home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.9.9/src/sha256/x86.rs:
+/home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.9.9/src/sha512/soft.rs:
+/home/katana/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sha2-0.9.9/src/sha512/x86.rs:
