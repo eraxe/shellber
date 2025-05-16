@@ -1,4 +1,4 @@
-# ShellBe
+# ShellBe | Don't use. Problematic.
 
 A comprehensive SSH management tool with plugin support, implemented in Rust.
 
