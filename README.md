@@ -52,6 +52,8 @@ Commands:
   export       Export profiles to SSH config
   import       Import profiles from SSH config
   plugin       Plugin management commands
+  update       Update ShellBe to the latest version
+  uninstall    Uninstall ShellBe
   help         Print this message or the help of the given subcommand(s)
 ```
 
@@ -162,6 +164,10 @@ crate-type = ["cdylib"]
 shellbe plugin install username/my-plugin
 ```
 
+## Security
+
+ShellBe takes security seriously, especially with its plugin system. All plugins undergo security validation before loading to help prevent potentially harmful code execution. The plugin sandboxing restricts file system access, network access, and resource usage to enhance security.
+
 ## Configuration
 
 ShellBe stores its configuration in `~/.shellbe/`:
@@ -171,6 +177,12 @@ ShellBe stores its configuration in `~/.shellbe/`:
 - `history.json`: Connection history
 - `plugins.json`: Plugin metadata
 - `plugins/`: Plugin libraries
+
+## System Requirements
+
+- SSH tools (ssh, ssh-keygen, ssh-copy-id)
+- Git (for plugin management)
+- 10MB minimum disk space
 
 ## License
 

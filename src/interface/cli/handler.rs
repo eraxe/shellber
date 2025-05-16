@@ -55,7 +55,7 @@ impl CommandHandler {
             Commands::Export { replace } => self.handle_export(replace).await?,
             Commands::Import { replace } => self.handle_import(replace).await?,
             Commands::Plugin(args) => self.handle_plugin(args).await?,
-            Commands::Update { check } => self.handle_update(check).await?,
+            Commands::Update { check } => self.handle_update(check).await?,Commands::Uninstall { keep_config, yes } => self.handle_uninstall(keep_config, yes).await?,
         }
 
         Ok(())

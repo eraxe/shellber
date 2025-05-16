@@ -108,6 +108,17 @@ pub enum Commands {
         #[arg(long, short)]
         check: bool,
     },
+
+    /// Uninstall ShellBe
+    Uninstall {
+        /// Keep configuration files
+        #[arg(long, short)]
+        keep_config: bool,
+
+        /// Confirm uninstallation without prompt
+        #[arg(long, short)]
+        yes: bool,
+    },
 }
 
 /// Arguments for the 'add' command

@@ -59,7 +59,15 @@ dialoguer = "0.11.0"
 console = "0.15.7"
 whoami = "1.4.1"
 anyhow = "1.0.98"
+rpassword = "7.3.1"
+semver = "1.0.20"
 
+# Platform-specific dependencies
+[target.'cfg(unix)'.dependencies]
+libc = "0.2.150"
+
+[target.'cfg(windows)'.dependencies]
+winapi = { version = "0.3", features = ["fileapi", "minwindef"] }
 [dev-dependencies]
 assert_cmd = "2.0.12"
 assert_fs = "1.0.13"

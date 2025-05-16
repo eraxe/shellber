@@ -1,10 +1,11 @@
-use crate::domain::{Profile, SshService, DomainError};
+use crate::domain::{Profile, SshService};
+use crate::errors::{ShellBeError, Result, ErrorContext};
 use async_trait::async_trait;
 use std::path::{Path, PathBuf};
 use std::fs;
 use std::time::Duration;
 use std::process::{Command, Stdio};
-use std::io::Write;
+use std::io::{Write, Read};
 
 use tokio::time::timeout;
 use thrussh::client::{self, Config};
