@@ -1,5 +1,6 @@
 use crate::domain::{PluginMetadata, PluginStatus, PluginInfo};
 use crate::application::PluginError;
+use crate::utils::{FileLock, ensure_directory, ensure_file};
 use async_trait::async_trait;
 use std::path::PathBuf;
 use std::fs;
@@ -94,10 +95,8 @@ impl FilePluginRepository {
     /// Create a new file-based plugin repository
     pub async fn new(config_dir: PathBuf, plugins_file: String) -> Result<Self, PluginError> {
         // Create config directory if it doesn't exist
-        if !config_dir.exists() {
-            fs::create_dir_all(&config_dir)
-                .map_err(|e| PluginError::IoError(e))?;
-        }
+        ensure_directory(&config_dir).await
+            .map_err(|e| PluginError::IoError(e))?;
 
         let plugins_path = config_dir.join(&plugins_file);
         let plugins: Vec<SerializablePluginMetadata> = if plugins_path.exists() {
@@ -107,6 +106,9 @@ impl FilePluginRepository {
             serde_json::from_reader(file)
                 .map_err(|e| PluginError::InstallationFailed(format!("Failed to parse plugins: {}", e)))?
         } else {
+            // Create empty plugins file
+            ensure_file(&plugins_path, Some("[]")).await
+                .map_err(|e| PluginError::IoError(e))?;
             Vec::new()
         };
 
@@ -117,16 +119,37 @@ impl FilePluginRepository {
         })
     }
 
-    /// Save plugins to disk
+    /// Save plugins to disk with proper file locking
     async fn save_plugins(&self) -> Result<(), PluginError> {
         let plugins_path = self.config_dir.join(&self.plugins_file);
-        let plugins = self.plugins.read().await;
 
-        let file = fs::File::create(&plugins_path)
+        // Acquire a lock for writing
+        let mut lock = FileLock::new(&plugins_path).await;
+        if !lock.acquire(5000).await.map_err(|e| PluginError::IoError(e))? {
+            return Err(PluginError::InstallationFailed("Failed to acquire lock for writing plugins".to_string()));
+        }
+
+        // Get a snapshot of the plugins
+        let plugins = {
+            let plugins = self.plugins.read().await;
+            plugins.clone()
+        };
+
+        // Write to a temporary file first
+        let temp_path = plugins_path.with_extension("temp");
+        let file = fs::File::create(&temp_path)
             .map_err(|e| PluginError::IoError(e))?;
 
-        serde_json::to_writer_pretty(file, &*plugins)
+        serde_json::to_writer_pretty(file, &plugins)
             .map_err(|e| PluginError::InstallationFailed(format!("Failed to save plugins: {}", e)))?;
+
+        // Rename the temporary file to the actual file
+        // This provides atomic file replacement
+        fs::rename(&temp_path, &plugins_path)
+            .map_err(|e| PluginError::IoError(e))?;
+
+        // Release the lock
+        lock.release().await.map_err(|e| PluginError::IoError(e))?;
 
         Ok(())
     }

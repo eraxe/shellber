@@ -3,6 +3,7 @@ use crate::domain::{
     DomainError,
 };
 use std::sync::Arc;
+use std::collections::HashSet;
 
 /// AliasService manages SSH connection aliases
 pub struct AliasService {
@@ -27,6 +28,27 @@ impl AliasService {
         // Check if profile exists
         if !self.profile_repository.exists(profile_name).await? {
             return Err(DomainError::ProfileNotFound(profile_name.to_string()));
+        }
+
+        // Check if target is an alias (to detect potential circular references)
+        if let Some(target) = self.alias_repository.get_target(profile_name).await? {
+            // The target is an alias itself, check for circular reference
+            // Traverse the chain to check for cycles
+            let mut visited = HashSet::new();
+            visited.insert(alias_name.to_string());
+            visited.insert(profile_name.to_string());
+
+            let mut current = target;
+            while let Some(next) = self.alias_repository.get_target(&current).await? {
+                if visited.contains(&next) {
+                    return Err(DomainError::ConfigError(
+                        format!("Circular alias reference detected: {} -> {} -> {}",
+                                alias_name, profile_name, next)
+                    ));
+                }
+                visited.insert(next.clone());
+                current = next;
+            }
         }
 
         // Check if alias already exists
@@ -72,16 +94,34 @@ impl AliasService {
 
     /// Resolve an alias to a profile name
     pub async fn resolve_alias(&self, name: &str) -> Result<String, DomainError> {
-        match self.alias_repository.get_target(name).await? {
-            Some(target) => Ok(target),
-            None => {
-                // Check if it's a profile instead
-                if self.profile_repository.exists(name).await? {
-                    Ok(name.to_string())
-                } else {
-                    Err(DomainError::ProfileNotFound(name.to_string()))
-                }
+        let mut visited = HashSet::new();
+        visited.insert(name.to_string());
+
+        let mut current = name.to_string();
+
+        // Follow the alias chain until we reach a profile
+        while let Some(target) = self.alias_repository.get_target(&current).await? {
+            // Check for cycles
+            if visited.contains(&target) {
+                return Err(DomainError::ConfigError(
+                    format!("Circular alias reference detected: {} -> {}", current, target)
+                ));
             }
+
+            visited.insert(target.clone());
+            current = target;
         }
+
+        // Check if the final target is a valid profile
+        if self.profile_repository.exists(&current).await? {
+            Ok(current)
+        } else {
+            Err(DomainError::ProfileNotFound(current))
+        }
+    }
+
+    /// Check if a name is an alias
+    pub async fn is_alias(&self, name: &str) -> Result<bool, DomainError> {
+        Ok(self.alias_repository.get_target(name).await?.is_some())
     }
 }

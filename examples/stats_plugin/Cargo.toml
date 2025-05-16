@@ -1,0 +1,18 @@
+[package]
+name = "shellbe-stats-plugin"
+version = "1.0.0"
+edition = "2021"
+authors = ["ShellBe Team"]
+description = "Connection statistics plugin for ShellBe"
+license = "MIT"
+
+[lib]
+name = "shellbe_stats_plugin"
+crate-type = ["cdylib"]
+
+[dependencies]
+shellbe-plugin-sdk = { path = "../../plugin_sdk" }
+async-trait = "0.1"
+chrono = { version = "0.4", features = ["serde"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"

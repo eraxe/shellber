@@ -48,6 +48,10 @@ pub enum Commands {
         /// Key comment (e.g., email)
         #[arg(long, short)]
         comment: Option<String>,
+
+        /// Key type (ed25519 or rsa)
+        #[arg(long, short, default_value = "ed25519")]
+        type_: String,
     },
 
     /// Create an alias for a connection
@@ -97,6 +101,13 @@ pub enum Commands {
 
     /// Plugin management commands
     Plugin(PluginArgs),
+
+    /// Update ShellBe to the latest version
+    Update {
+        /// Check for updates without installing
+        #[arg(long, short)]
+        check: bool,
+    },
 }
 
 /// Arguments for the 'add' command

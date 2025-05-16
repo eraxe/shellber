@@ -36,6 +36,16 @@ impl ConnectionService {
         }
     }
 
+    /// Execute hook on all plugins
+    async fn execute_plugins_hook(&self, hook: Hook, profile: Option<&Profile>) -> Result<(), DomainError> {
+        for plugin in self.plugins.iter() {
+            if let Err(e) = plugin.execute_hook(hook, profile).await {
+                tracing::warn!("Plugin error in hook {:?}: {}", hook, e);
+            }
+        }
+        Ok(())
+    }
+
     /// Connect to a profile or alias
     pub async fn connect(&self, name: &str) -> Result<i32, DomainError> {
         // First check if this is an alias
@@ -57,15 +67,18 @@ impl ConnectionService {
         self.event_bus.publish(Event::ConnectionStarted(profile.clone()));
 
         // Run pre-connect plugin hooks
-        for plugin in self.plugins.iter() {
-            if let Err(e) = plugin.execute_hook(Hook::PreConnect, Some(&profile)).await {
-                tracing::warn!("Plugin error in pre-connect hook: {}", e);
-            }
-        }
+        self.execute_plugins_hook(Hook::PreConnect, Some(&profile)).await?;
 
         // Connect and measure time
         let start = Instant::now();
-        let exit_code = self.ssh_service.connect(&profile).await?;
+        let exit_code = match self.ssh_service.connect(&profile).await {
+            Ok(code) => code,
+            Err(e) => {
+                // Run appropriate plugin hooks for failure
+                self.execute_plugins_hook(Hook::TestFailure, Some(&profile)).await?;
+                return Err(e);
+            }
+        };
         let duration = start.elapsed();
 
         // Update history entry with result
@@ -79,11 +92,7 @@ impl ConnectionService {
         self.history_repository.add(entry.clone()).await?;
 
         // Run post-connect plugin hooks
-        for plugin in self.plugins.iter() {
-            if let Err(e) = plugin.execute_hook(Hook::PostDisconnect, Some(&profile)).await {
-                tracing::warn!("Plugin error in post-disconnect hook: {}", e);
-            }
-        }
+        self.execute_plugins_hook(Hook::PostDisconnect, Some(&profile)).await?;
 
         // Publish connection ended event
         self.event_bus.publish(Event::ConnectionEnded(entry));
@@ -115,11 +124,7 @@ impl ConnectionService {
             Hook::TestFailure
         };
 
-        for plugin in self.plugins.iter() {
-            if let Err(e) = plugin.execute_hook(hook, Some(&profile)).await {
-                tracing::warn!("Plugin error in test hook: {}", e);
-            }
-        }
+        self.execute_plugins_hook(hook, Some(&profile)).await?;
 
         Ok(result)
     }

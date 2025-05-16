@@ -1,4 +1,5 @@
 use crate::domain::{ProfileRepository, Profile, DomainError};
+use crate::utils::{FileLock, ensure_directory, ensure_file};
 use async_trait::async_trait;
 use serde::{Serialize, Deserialize};
 use std::path::{Path, PathBuf};
@@ -40,10 +41,8 @@ impl FileProfileRepository {
     /// Create a new file-based profile repository
     pub async fn new(config: FileStorageConfig) -> Result<Self, DomainError> {
         // Create config directory if it doesn't exist
-        if !config.config_dir.exists() {
-            fs::create_dir_all(&config.config_dir)
-                .map_err(|e| DomainError::IoError(e))?;
-        }
+        ensure_directory(&config.config_dir).await
+            .map_err(|e| DomainError::IoError(e))?;
 
         let profiles_path = config.config_dir.join(&config.profiles_file);
         let profiles = if profiles_path.exists() {
@@ -53,6 +52,9 @@ impl FileProfileRepository {
             serde_json::from_reader(file)
                 .map_err(|e| DomainError::ConfigError(format!("Failed to parse profiles: {}", e)))?
         } else {
+            // Create an empty profiles file
+            ensure_file(&profiles_path, Some("{}")).await
+                .map_err(|e| DomainError::IoError(e))?;
             HashMap::new()
         };
 
@@ -62,16 +64,37 @@ impl FileProfileRepository {
         })
     }
 
-    /// Save profiles to disk
+    /// Save profiles to disk with proper file locking
     async fn save_profiles(&self) -> Result<(), DomainError> {
         let profiles_path = self.config.config_dir.join(&self.config.profiles_file);
-        let profiles = self.profiles.read().await;
 
-        let file = fs::File::create(&profiles_path)
+        // Acquire a lock for writing
+        let mut lock = FileLock::new(&profiles_path).await;
+        if !lock.acquire(5000).await.map_err(|e| DomainError::IoError(e))? {
+            return Err(DomainError::ConfigError("Failed to acquire lock for writing profiles".to_string()));
+        }
+
+        // Get a snapshot of the profiles
+        let profiles = {
+            let profiles = self.profiles.read().await;
+            profiles.clone()
+        };
+
+        // Write to a temporary file first
+        let temp_path = profiles_path.with_extension("temp");
+        let file = fs::File::create(&temp_path)
             .map_err(|e| DomainError::IoError(e))?;
 
-        serde_json::to_writer_pretty(file, &*profiles)
+        serde_json::to_writer_pretty(file, &profiles)
             .map_err(|e| DomainError::ConfigError(format!("Failed to save profiles: {}", e)))?;
+
+        // Rename the temporary file to the actual file
+        // This provides atomic file replacement
+        fs::rename(&temp_path, &profiles_path)
+            .map_err(|e| DomainError::IoError(e))?;
+
+        // Release the lock
+        lock.release().await.map_err(|e| DomainError::IoError(e))?;
 
         Ok(())
     }

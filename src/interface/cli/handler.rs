@@ -1,6 +1,6 @@
 use crate::application::{
     ProfileService, ConnectionService, AliasService,
-    PluginService, SshConfigService, PluginError,
+    PluginService, SshConfigService, PluginError, UpdateService
 };
 use crate::domain::{Profile, Alias, DomainError};
 use crate::interface::cli::commands::{Commands, AddArgs, AliasArgs, PluginCommands};
@@ -16,6 +16,7 @@ pub struct CommandHandler {
     alias_service: Arc<AliasService>,
     plugin_service: Arc<PluginService>,
     ssh_config_service: Arc<SshConfigService>,
+    update_service: UpdateService,
 }
 
 impl CommandHandler {
@@ -33,6 +34,7 @@ impl CommandHandler {
             alias_service,
             plugin_service,
             ssh_config_service,
+            update_service: UpdateService::new(),
         }
     }
 
@@ -53,11 +55,99 @@ impl CommandHandler {
             Commands::Export { replace } => self.handle_export(replace).await?,
             Commands::Import { replace } => self.handle_import(replace).await?,
             Commands::Plugin(args) => self.handle_plugin(args).await?,
+            Commands::Update { check } => self.handle_update(check).await?,
         }
 
         Ok(())
     }
+    /// Handle the 'update' command
+    async fn handle_update(&self, check_only: bool) -> anyhow::Result<()> {
+        println!("{} Checking for updates...", style("→").cyan().bold());
 
+        match self.update_service.check_for_update() {
+            Ok(Some(version)) => {
+                println!("{} A new version {} is available (current: {})",
+                         style("✓").green().bold(),
+                         style(&version).green(),
+                         style(crate::application::update_service::CURRENT_VERSION).yellow());
+
+                if !check_only {
+                    // Ask for confirmation
+                    let confirm = Confirm::new()
+                        .with_prompt("Do you want to update now?")
+                        .default(true)
+                        .interact()?;
+
+                    if confirm {
+                        // Backup the executable
+                        match self.update_service.backup_executable() {
+                            Ok(path) => {
+                                println!("{} Created backup at {}",
+                                         style("✓").green().bold(),
+                                         path.display());
+                            },
+                            Err(e) => {
+                                println!("{} Failed to create backup: {}",
+                                         style("!").yellow().bold(), e);
+
+                                // Ask to continue without backup
+                                let continue_anyway = Confirm::new()
+                                    .with_prompt("Continue without backup?")
+                                    .default(false)
+                                    .interact()?;
+
+                                if !continue_anyway {
+                                    println!("{} Update cancelled", style("!").yellow().bold());
+                                    return Ok(());
+                                }
+                            }
+                        }
+
+                        // Perform the update
+                        match self.update_service.update() {
+                            Ok(_) => {
+                                println!("{} Successfully updated to {}!",
+                                         style("✓").green().bold(),
+                                         style(&version).green());
+                            },
+                            Err(e) => {
+                                println!("{} Update failed: {}",
+                                         style("✗").red().bold(), e);
+                            }
+                        }
+                    } else {
+                        println!("{} Update cancelled", style("!").yellow().bold());
+                    }
+                }
+            },
+            Ok(None) => {
+                println!("{} You are already using the latest version ({})",
+                         style("✓").green().bold(),
+                         style(crate::application::update_service::CURRENT_VERSION).green());
+            },
+            Err(e) => {
+                println!("{} Failed to check for updates: {}",
+                         style("✗").red().bold(), e);
+            }
+        }
+
+        Ok(())
+    }
+    async fn unload_plugin(&self, name: &str) -> Result<()> {
+        let mut plugins = self.loaded_plugins.write().await;
+        let idx = plugins.iter().position(|(n, _, _)| n == name)
+            .ok_or_else(|| PluginError::NotFound(name.to_string()))?;
+
+        // Remove the plugin
+        plugins.remove(idx);
+
+        Ok(())
+    }
+}
+
+// Helper functions
+
+/// Parse a GitHub URL into owner and repo
     /// Handle the 'add' command
     async fn handle_add(&self, args: AddArgs) -> anyhow::Result<()> {
         println!("{}", style("Adding a new SSH profile...").cyan().bold());
